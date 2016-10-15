@@ -40,6 +40,8 @@ public class ApiArchitectureMain {
 		request.setPath("sports");
 		request.setBody("tenis");
 		this.request();
+		request.setBody("tenis");
+		this.request();
 		
 		/*request.setPath("votes");
 		request.setBody("1:4");

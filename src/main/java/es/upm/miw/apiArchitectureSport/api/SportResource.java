@@ -1,18 +1,21 @@
 package es.upm.miw.apiArchitectureSport.api;
 
-import es.upm.miw.apiArchitectureSport.controllers.UserController;
 import es.upm.miw.apiArchitectureSport.controllers.SportController;
+import es.upm.miw.apiArchitectureSport.exceptions.ExistingSportException;
 import es.upm.miw.apiArchitectureSport.exceptions.InvalidSportNameFieldException;
-//import es.upm.miw.apiArchitectureSport.exceptions.InvalidVoteException;
-//import es.upm.miw.apiArchitectureSport.exceptions.NotFoundThemeIdException;
-import es.upm.miw.apiArchitectureSport.wrappers.VoteListWrapper;
 
 public class SportResource {
 
 	// POST **/sports   body="name"
-	public void createSport(String name) throws InvalidSportNameFieldException{
+	public void createSport(String name) throws InvalidSportNameFieldException, ExistingSportException{
 		this.validateField(name);
-		new SportController().createSport(name);
+		
+		if(new SportController().checkIfExistsSport(name)==false){
+			new SportController().createSport(name);
+		}else{
+			throw new ExistingSportException ("" + name);
+		}
+		
 	}
 	
 	private void validateField(String field) throws InvalidSportNameFieldException {
