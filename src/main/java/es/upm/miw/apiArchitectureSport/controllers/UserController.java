@@ -4,7 +4,7 @@ import java.util.List;
 
 import es.upm.miw.apiArchitectureSport.daos.DaoFactory;
 import es.upm.miw.apiArchitectureSport.wrappers.UserListWrapper;
-import es.upm.miw.apiArchitectureSport.wrappers.ThemeWrapper;
+import es.upm.miw.apiArchitectureSport.wrappers.UserWrapper;
 import es.upm.miw.apiArchitectureTheme.entities.User;
 
 

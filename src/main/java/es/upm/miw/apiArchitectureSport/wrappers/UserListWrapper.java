@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserListWrapper {
-	List<ThemeWrapper> themeList;
+	List<UserWrapper> themeList;
 
 	
 	public UserListWrapper() {
 		themeList = new ArrayList<>();
 	}
 
-	public List<ThemeWrapper> getThemeList() {
+	public List<UserWrapper> getThemeList() {
 		return themeList;
 	}
 
-	public void addThemeWrapper(ThemeWrapper themeWrapper){
+	public void addThemeWrapper(UserWrapper themeWrapper){
 		themeList.add(themeWrapper);
 	}
 	
@@ -23,7 +23,7 @@ public class UserListWrapper {
 	@Override
 	public String toString() {
 		String result = "{\"themeList\":[ ";
-		for (ThemeWrapper themeWrapper : themeList) {
+		for (UserWrapper themeWrapper : themeList) {
 			result += themeWrapper.toString() + ",";
 		}
 		return result.substring(0, result.length() - 1) + "]}";
