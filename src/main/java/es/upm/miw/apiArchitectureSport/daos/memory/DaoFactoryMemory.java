@@ -6,26 +6,26 @@ import es.upm.miw.apiArchitectureSport.daos.SportDao;
 
 public class DaoFactoryMemory extends DaoFactory {
 
-	private UserDao themeDao;
-	private SportDao voteDao;
+	private UserDao userDao;
+	private SportDao sportDao;
 
 	public DaoFactoryMemory() {
 	}
 
 	@Override
-	public UserDao getThemeDao() {
-		if (themeDao == null) {
-			themeDao = new ThemeDaoMemory();
+	public UserDao getUserDao() {
+		if (userDao == null) {
+			userDao = new UserDaoMemory();
 		}
-		return themeDao;
+		return userDao;
 	}
 
 	@Override
-	public SportDao getVoteDao() {
-		if (voteDao == null) {
-			voteDao = new VoteDaoMemory();
+	public SportDao getSportDao() {
+		if (sportDao == null) {
+			sportDao = new SportDaoMemory();
 		}
-		return voteDao;
+		return sportDao;
 	}
 
 }

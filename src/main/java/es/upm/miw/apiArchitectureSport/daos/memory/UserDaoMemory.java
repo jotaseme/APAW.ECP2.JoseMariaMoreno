@@ -5,9 +5,9 @@ import java.util.HashMap;
 import es.upm.miw.apiArchitectureSport.daos.UserDao;
 import es.upm.miw.apiArchitectureTheme.entities.User;
 
-public class ThemeDaoMemory extends GenericMemoryDao<User> implements UserDao {
+public class UserDaoMemory extends GenericMemoryDao<User> implements UserDao {
 
-	public ThemeDaoMemory() {
+	public UserDaoMemory() {
 		this.setMap(new HashMap<Integer, User>());
 	}
 
