@@ -24,8 +24,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getName() {
+	public String getNick() {
         return nick;
+    }
+	
+	public void setNick(String nick) {
+		this.nick = nick;
     }
 	
 	public String getEmail() {

@@ -2,6 +2,7 @@ package es.upm.miw.apiArchitectureSport;
 
 import es.upm.miw.apiArchitectureSport.api.UserResource;
 import es.upm.miw.apiArchitectureSport.api.SportResource;
+import es.upm.miw.apiArchitectureSport.exceptions.ExistingUserException;
 import es.upm.miw.apiArchitectureSport.exceptions.InvalidRequestException;
 import es.upm.miw.apiArchitectureSport.exceptions.InvalidThemeFieldException;
 import es.upm.miw.web.http.HttpRequest;
@@ -25,7 +26,7 @@ public class Dispatcher {
 			// **/users/search?sport=*
 		} else if ("users".equals(request.paths()[0]) && "overage".equals(request.paths()[2])) {
 			try {
-				response.setBody(userResource.themeOverage(Integer.valueOf(request.paths()[1])).toString());
+				//response.setBody(userResource.themeOverage(Integer.valueOf(request.paths()[1])).toString());
 			} catch (Exception e) {
 				responseError(response, e);
 			}
@@ -42,7 +43,11 @@ public class Dispatcher {
 			String nick = request.getBody().split(":")[0];
 			String email = request.getBody().split(":")[1];
 			try {
-				userResource.createUser(nick, email);
+				try {
+					userResource.createUser(nick, email);
+				} catch (ExistingUserException e) {
+					this.responseError(response, e);
+				}
 				response.setStatus(HttpStatus.CREATED);
 			} catch (InvalidThemeFieldException e) {
 				this.responseError(response, e);

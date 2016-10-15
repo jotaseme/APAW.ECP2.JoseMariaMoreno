@@ -25,11 +25,13 @@ public class ApiArchitectureMain {
 	public void demo() {
 		request.setMethod(HttpMethod.POST);
 		request.setPath("users");
-		request.setBody("jose:jose@email.com");
+		request.setBody("uno:uno@gmail.com");
 		this.request();
-		request.setBody("dos");
+		request.setBody("dos:dos@gmail.com");
 		this.request();
-		request.setPath("votes");
+		request.setBody("uno:tres@gmail.com");
+		this.request();
+		/*request.setPath("votes");
 		request.setBody("1:4");
 		this.request();
 		request.setBody("1:5");
@@ -59,7 +61,7 @@ public class ApiArchitectureMain {
 		request.setMethod(HttpMethod.POST);
 		request.setPath("votes");
 		request.setBody("99:4");
-		this.request();
+		this.request();*/
 	}
 
 	public void httpMethod() {
