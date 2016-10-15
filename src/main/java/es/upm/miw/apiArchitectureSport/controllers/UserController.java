@@ -42,10 +42,8 @@ public class UserController {
 	
 	public boolean checkIfExistsUserNick(String nick){
 		if (DaoFactory.getFactory().getUserDao().read(nick) == null) {
-			System.out.println("LLEGAS OMEEE 1");
             return false;
         }else{
-        	System.out.println("LLEGAS OMEEE 2");
             return true;
         }
 		
