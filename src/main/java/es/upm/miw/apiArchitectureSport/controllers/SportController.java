@@ -1,11 +1,7 @@
 package es.upm.miw.apiArchitectureSport.controllers;
 
-import java.util.List;
 
 import es.upm.miw.apiArchitectureSport.daos.DaoFactory;
-import es.upm.miw.apiArchitectureSport.wrappers.VoteListWrapper;
-import es.upm.miw.apiArchitectureSport.wrappers.VoteWrapper;
-import es.upm.miw.apiArchitectureTheme.entities.User;
 import es.upm.miw.apiArchitectureTheme.entities.Sport;
 
 public class SportController {

@@ -36,6 +36,10 @@ public class ApiArchitectureMain {
 		request.clearQueryParams();
 		request.setBody("");
 		this.request();
+		request.setMethod(HttpMethod.POST);
+		request.setPath("sports");
+		request.setBody("tenis");
+		this.request();
 		
 		/*request.setPath("votes");
 		request.setBody("1:4");
