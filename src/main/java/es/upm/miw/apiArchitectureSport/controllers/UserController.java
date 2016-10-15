@@ -10,14 +10,14 @@ import es.upm.miw.apiArchitectureTheme.entities.User;
 
 public class UserController {
 
-	/*public UserListWrapper themeList() {
-		List<User> themeList = DaoFactory.getFactory().getUserDao().findAll();
-		UserListWrapper themeListWrapper = new UserListWrapper();
-		for (User theme : themeList) {
-			themeListWrapper.addThemeWrapper(new ThemeWrapper(theme.getId(), theme.getName()));
+	public UserListWrapper userList() {
+		List<User> userList = DaoFactory.getFactory().getUserDao().findAll();
+		UserListWrapper userListWrapper = new UserListWrapper();
+		for (User user : userList) {
+			userListWrapper.addUserWrapper(new UserWrapper(user.getNick(), user.getEmail()));
 		}
-		return themeListWrapper;
-	}*/
+		return userListWrapper;
+	}
 
 	public void createUser(String nick, String email) {
 		DaoFactory.getFactory().getUserDao().create(new User(nick, email));
@@ -34,11 +34,6 @@ public class UserController {
 		}
 		return new OverageWrapper(total / voteValues.size());
 	}*/
-
-	public UserListWrapper userList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	public boolean checkIfExistsUserNick(String nick){
 		if (DaoFactory.getFactory().getUserDao().read(nick) == null) {

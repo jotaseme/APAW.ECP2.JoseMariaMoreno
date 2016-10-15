@@ -1,11 +1,11 @@
 package es.upm.miw.apiArchitectureSport.api;
 
 import es.upm.miw.apiArchitectureSport.controllers.UserController;
-import es.upm.miw.apiArchitectureSport.wrappers.OverageWrapper;
+
 import es.upm.miw.apiArchitectureSport.wrappers.UserListWrapper;
 import es.upm.miw.apiArchitectureSport.exceptions.ExistingUserException;
-import es.upm.miw.apiArchitectureSport.exceptions.InvalidThemeFieldException;
-import es.upm.miw.apiArchitectureSport.exceptions.NotFoundThemeIdException;
+import es.upm.miw.apiArchitectureSport.exceptions.InvalidNickFieldException;
+
 
 public class UserResource {
 
@@ -15,7 +15,7 @@ public class UserResource {
 	}
 
 	// POST **/users   body="nick:email""
-	public void createUser(String nick, String email) throws InvalidThemeFieldException,ExistingUserException {
+	public void createUser(String nick, String email) throws InvalidNickFieldException,ExistingUserException {
 		this.validateField(nick);
 		this.validateField(email);
 		if(new UserController().checkIfExistsUserNick(nick)==false){
@@ -26,9 +26,9 @@ public class UserResource {
 		
 	}
 
-	private void validateField(String field) throws InvalidThemeFieldException {
+	private void validateField(String field) throws InvalidNickFieldException {
 		if (field == null || field.isEmpty()) {
-			throw new InvalidThemeFieldException(field);
+			throw new InvalidNickFieldException(field);
 		}
 	}
 

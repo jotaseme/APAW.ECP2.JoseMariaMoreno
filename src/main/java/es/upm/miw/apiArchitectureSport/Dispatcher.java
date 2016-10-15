@@ -4,7 +4,7 @@ import es.upm.miw.apiArchitectureSport.api.UserResource;
 import es.upm.miw.apiArchitectureSport.api.SportResource;
 import es.upm.miw.apiArchitectureSport.exceptions.ExistingUserException;
 import es.upm.miw.apiArchitectureSport.exceptions.InvalidRequestException;
-import es.upm.miw.apiArchitectureSport.exceptions.InvalidThemeFieldException;
+import es.upm.miw.apiArchitectureSport.exceptions.InvalidNickFieldException;
 import es.upm.miw.web.http.HttpRequest;
 import es.upm.miw.web.http.HttpResponse;
 import es.upm.miw.web.http.HttpStatus;
@@ -49,7 +49,7 @@ public class Dispatcher {
 				} catch (ExistingUserException e) {
 					this.responseError(response, e);
 				}			
-			} catch (InvalidThemeFieldException e) {
+			} catch (InvalidNickFieldException e) {
 				this.responseError(response, e);
 			}
 			break;

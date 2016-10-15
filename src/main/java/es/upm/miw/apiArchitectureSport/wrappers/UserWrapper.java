@@ -30,7 +30,7 @@ public class UserWrapper {
 
 	@Override
 	public String toString() {
-		return "{\"nick\":" + nick + ",\"email\":\"" + email + "\"}";
+		return "{\"nick\":\"" + nick + "\",\"email\":\"" + email + "\"}";
 	}
 
 }

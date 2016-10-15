@@ -31,6 +31,12 @@ public class ApiArchitectureMain {
 		this.request();
 		request.setBody("uno:tres@gmail.com");
 		this.request();
+		request.setMethod(HttpMethod.GET);
+		request.setPath("users");
+		request.clearQueryParams();
+		request.setBody("");
+		this.request();
+		
 		/*request.setPath("votes");
 		request.setBody("1:4");
 		this.request();

@@ -4,27 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserListWrapper {
-	List<UserWrapper> themeList;
+	List<UserWrapper> userList;
 
 	
 	public UserListWrapper() {
-		themeList = new ArrayList<>();
+		userList = new ArrayList<>();
 	}
 
 	public List<UserWrapper> getThemeList() {
-		return themeList;
+		return userList;
 	}
 
-	public void addThemeWrapper(UserWrapper themeWrapper){
-		themeList.add(themeWrapper);
+	public void addUserWrapper(UserWrapper userWrapper){
+		userList.add(userWrapper);
 	}
 	
 
 	@Override
 	public String toString() {
-		String result = "{\"themeList\":[ ";
-		for (UserWrapper themeWrapper : themeList) {
-			result += themeWrapper.toString() + ",";
+		String result = "{\"userList\":[ ";
+		for (UserWrapper userWrapper : userList) {
+			result += userWrapper.toString() + ",";
 		}
 		return result.substring(0, result.length() - 1) + "]}";
 	}
