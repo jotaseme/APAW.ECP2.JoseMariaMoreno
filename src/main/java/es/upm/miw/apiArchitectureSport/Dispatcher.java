@@ -45,10 +45,10 @@ public class Dispatcher {
 			try {
 				try {
 					userResource.createUser(nick, email);
+					response.setStatus(HttpStatus.CREATED);
 				} catch (ExistingUserException e) {
 					this.responseError(response, e);
-				}
-				response.setStatus(HttpStatus.CREATED);
+				}			
 			} catch (InvalidThemeFieldException e) {
 				this.responseError(response, e);
 			}
