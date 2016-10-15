@@ -23,16 +23,6 @@ public class SportDaoMemory extends GenericMemoryDao<Sport> implements SportDao 
 		entity.setId(id);
 	}
 
-	@Override
-	public List<Integer> findValueByThemeId(int themeId) {
-		List<Sport> votes = this.findAll();
-		List<Integer> votesValue = new ArrayList<>();
-		for (Sport vote : votes) {
-			if (vote.getTheme().getId() == themeId) {
-				votesValue.add(vote.getValue());
-			}
-		}
-		return votesValue;
-	}
+	
 
 }
