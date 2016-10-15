@@ -2,8 +2,8 @@ package es.upm.miw.apiArchitectureSport.daos;
 
 import java.util.List;
 
-import es.upm.miw.apiArchitectureTheme.entities.Vote;
+import es.upm.miw.apiArchitectureTheme.entities.Sport;
 
-public interface VoteDao extends GenericDao<Vote, Integer> {
+public interface SportDao extends GenericDao<Sport, Integer> {
 	List<Integer> findValueByThemeId(int themeId);
 }

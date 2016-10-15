@@ -1,7 +1,7 @@
 package es.upm.miw.apiArchitectureSport;
 
 import es.upm.miw.apiArchitectureSport.api.UserResource;
-import es.upm.miw.apiArchitectureSport.api.VoteResource;
+import es.upm.miw.apiArchitectureSport.api.SportResource;
 import es.upm.miw.apiArchitectureSport.exceptions.InvalidRequestException;
 import es.upm.miw.apiArchitectureSport.exceptions.InvalidThemeFieldException;
 import es.upm.miw.web.http.HttpRequest;
@@ -10,8 +10,8 @@ import es.upm.miw.web.http.HttpStatus;
 
 public class Dispatcher {
 
-	private UserResource themeResource = new UserResource();
-	private VoteResource voteResource = new VoteResource();
+	private UserResource userResource = new UserResource();
+	private SportResource sportResource = new SportResource();
 
 	private void responseError(HttpResponse response, Exception e) {
 		response.setBody("{\"error\":\"" + e + "\"}");
@@ -19,19 +19,16 @@ public class Dispatcher {
 	}
 
 	public void doGet(HttpRequest request, HttpResponse response) {
-		// **/themes
-		if ("themes".equals(request.getPath())) {
-			response.setBody(themeResource.themeList().toString());
-			// **/themes/{id}/overage
-		} else if ("themes".equals(request.paths()[0]) && "overage".equals(request.paths()[2])) {
+		// **/users
+		if ("users".equals(request.getPath())) {
+			response.setBody(userResource.userList().toString());
+			// **/users/search?sport=*
+		} else if ("users".equals(request.paths()[0]) && "overage".equals(request.paths()[2])) {
 			try {
-				response.setBody(themeResource.themeOverage(Integer.valueOf(request.paths()[1])).toString());
+				response.setBody(userResource.themeOverage(Integer.valueOf(request.paths()[1])).toString());
 			} catch (Exception e) {
 				responseError(response, e);
 			}
-			// **/votes
-		} else if ("votes".equals(request.getPath())) {
-			response.setBody(voteResource.voteList().toString());
 		} else {
 			responseError(response, new InvalidRequestException(request.getPath()));
 		}
@@ -39,22 +36,22 @@ public class Dispatcher {
 
 	public void doPost(HttpRequest request, HttpResponse response) {
 		switch (request.getPath()) {
-		// POST **/themes body="themeName"
-		case "themes":
+		// POST **/users body="nick:email"
+		case "users":
 			// Injectar parámetros...
+			String nick = request.getBody().split(":")[0];
+			String email = request.getBody().split(":")[1];
 			try {
-				themeResource.createTheme(request.getBody());
+				userResource.createUser(nick, email);
 				response.setStatus(HttpStatus.CREATED);
 			} catch (InvalidThemeFieldException e) {
 				this.responseError(response, e);
 			}
 			break;
 		// POST votes body="themeId:vote"
-		case "votes":
-			String themeId = request.getBody().split(":")[0];
-			String vote = request.getBody().split(":")[1];
+		case "sports":
 			try {
-				voteResource.createVote(Integer.valueOf(themeId), Integer.valueOf(vote));
+				sportResource.createSport(request.getBody());
 				response.setStatus(HttpStatus.CREATED);
 			} catch (Exception e) {
 				responseError(response, e);

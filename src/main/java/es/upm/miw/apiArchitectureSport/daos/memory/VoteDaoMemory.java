@@ -4,30 +4,30 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import es.upm.miw.apiArchitectureSport.daos.VoteDao;
-import es.upm.miw.apiArchitectureTheme.entities.Vote;
+import es.upm.miw.apiArchitectureSport.daos.SportDao;
+import es.upm.miw.apiArchitectureTheme.entities.Sport;
 
-public class VoteDaoMemory extends GenericMemoryDao<Vote> implements VoteDao {
+public class VoteDaoMemory extends GenericMemoryDao<Sport> implements SportDao {
 
 	public VoteDaoMemory() {
-		this.setMap(new HashMap<Integer,Vote>());
+		this.setMap(new HashMap<Integer,Sport>());
 	}
 
 	@Override
-	protected Integer getId(Vote entity) {
+	protected Integer getId(Sport entity) {
 		return entity.getId();
 	}
 
 	@Override
-	protected void setId(Vote entity, Integer id) {
+	protected void setId(Sport entity, Integer id) {
 		entity.setId(id);
 	}
 
 	@Override
 	public List<Integer> findValueByThemeId(int themeId) {
-		List<Vote> votes = this.findAll();
+		List<Sport> votes = this.findAll();
 		List<Integer> votesValue = new ArrayList<>();
-		for (Vote vote : votes) {
+		for (Sport vote : votes) {
 			if (vote.getTheme().getId() == themeId) {
 				votesValue.add(vote.getValue());
 			}

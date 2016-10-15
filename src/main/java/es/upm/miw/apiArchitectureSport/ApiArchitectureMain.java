@@ -14,18 +14,18 @@ public class ApiArchitectureMain {
 
 	private HttpRequest request = new HttpRequest();
 
-//	public void help() {
-//		IO.getIO().println("GET **/themes");
-//		IO.getIO().println("POST **/themes   body=\"themeName\"");
-//		IO.getIO().println("GET **/themes/{id}/overage");
-//		IO.getIO().println("POST **/votes   body=\"themeId:vote\"");
-//		IO.getIO().println("GET **/votes");
-//	}
+	public void help() {
+		IO.getIO().println("GET **/themes");
+		IO.getIO().println("POST **/themes   body=\"themeName\"");
+		IO.getIO().println("GET **/themes/{id}/overage");
+		IO.getIO().println("POST **/votes   body=\"themeId:vote\"");
+		IO.getIO().println("GET **/votes");
+	}
 
 	public void demo() {
 		request.setMethod(HttpMethod.POST);
-		request.setPath("themes");
-		request.setBody("uno");
+		request.setPath("users");
+		request.setBody("jose:jose@email.com");
 		this.request();
 		request.setBody("dos");
 		this.request();

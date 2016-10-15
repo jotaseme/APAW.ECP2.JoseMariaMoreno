@@ -9,14 +9,15 @@ import es.upm.miw.apiArchitectureSport.exceptions.NotFoundThemeIdException;
 public class UserResource {
 
 	// GET **/users
-	public UserListWrapper UserList() {
+	public UserListWrapper userList() {
 		return new UserController().userList();
 	}
 
-	// POST **/themes   body="themeName"
-	public void createTheme(String themeName) throws InvalidThemeFieldException {
-		this.validateField(themeName);
-		new UserController().createTheme(themeName);
+	// POST **/users   body="nick:email""
+	public void createUser(String nick, String email) throws InvalidThemeFieldException {
+		this.validateField(nick);
+		this.validateField(email);
+		new UserController().createUser(nick,email);
 	}
 
 	private void validateField(String field) throws InvalidThemeFieldException {
