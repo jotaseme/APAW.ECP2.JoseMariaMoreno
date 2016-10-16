@@ -29,4 +29,10 @@ public class UserDaoMemory extends GenericMemoryDao<User> implements UserDao {
 		return null;
 	}
 
+	@Override
+	public void updateUserSportList(String nick, String sportName) {
+		this.read(nick).updateUserSportList(sportName);
+		
+	}
+
 }

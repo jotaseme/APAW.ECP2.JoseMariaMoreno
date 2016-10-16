@@ -44,4 +44,8 @@ public class UserController {
 		
 	}
 
+	public void updateUserSportList(String nick, String sportName) {
+		DaoFactory.getFactory().getUserDao().updateUserSportList(nick,sportName);	
+	}
+
 }

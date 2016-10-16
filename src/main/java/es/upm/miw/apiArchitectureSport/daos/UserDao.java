@@ -6,5 +6,6 @@ import es.upm.miw.apiArchitectureTheme.entities.User;
 
 public interface UserDao extends GenericDao<User, String> {
 	List<String> findUserBySportName(String sportName);
+	void updateUserSportList(String nick, String sportName);
 	
 }

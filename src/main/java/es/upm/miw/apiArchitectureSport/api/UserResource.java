@@ -34,7 +34,8 @@ public class UserResource {
 
 	//PUT **/users/{nick}/sport
 	public String updateSportList(String nick, String sportName) {
-		// TODO Auto-generated method stub
+
+		new UserController().updateUserSportList(nick,sportName);
 		return null;
 	}
 
