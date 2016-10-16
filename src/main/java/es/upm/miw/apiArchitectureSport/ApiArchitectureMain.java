@@ -42,7 +42,13 @@ public class ApiArchitectureMain {
 		this.request();
 		request.setBody("tenis");
 		this.request();
-		
+		request.setBody("ajedrez");
+		this.request();
+		request.setMethod(HttpMethod.PUT);
+		request.setPath("users/uno/sport");
+		request.clearQueryParams();
+		request.setBody("tenis");
+		this.request();
 		/*request.setPath("votes");
 		request.setBody("1:4");
 		this.request();
