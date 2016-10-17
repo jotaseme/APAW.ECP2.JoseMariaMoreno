@@ -60,6 +60,11 @@ public class ApiArchitectureMain {
 		request.setBody("");
 		request.setPath("users/search?sport=tenis");
 		this.request();
+		request.setMethod(HttpMethod.POST);
+		request.clearQueryParams();
+		request.setBody("");
+		request.setPath("noPath");
+		this.request();
 	}
 
 	public void httpMethod() {
