@@ -5,6 +5,8 @@ import es.upm.miw.apiArchitectureSport.api.SportResource;
 import es.upm.miw.apiArchitectureSport.exceptions.ExistingSportException;
 import es.upm.miw.apiArchitectureSport.exceptions.ExistingUserException;
 import es.upm.miw.apiArchitectureSport.exceptions.InvalidRequestException;
+import es.upm.miw.apiArchitectureSport.exceptions.SportNotFoundException;
+import es.upm.miw.apiArchitectureSport.exceptions.UserNotFoundException;
 import es.upm.miw.apiArchitectureSport.exceptions.InvalidFieldException;
 import es.upm.miw.web.http.HttpRequest;
 import es.upm.miw.web.http.HttpResponse;
@@ -25,9 +27,10 @@ public class Dispatcher {
 		if ("users".equals(request.getPath())) {
 			response.setBody(userResource.userList().toString());
 			// **/users/search?sport=*
-		} else if ("users".equals(request.paths()[0]) && "search".equals(request.paths()[2])) {
+		} else if ("users".equals(request.paths()[0]) && "search?sport=".equals(request.paths()[1].substring(0, request.paths()[1].indexOf("=")+1))) {
+			String sportName = request.paths()[1].substring(request.paths()[1].indexOf("=")+1,request.paths()[1].length());	
 			try {
-
+				response.setBody(userResource.findUserBySportName(sportName).toString());
 			} catch (Exception e) {
 				responseError(response, e);
 			}
@@ -56,7 +59,7 @@ public class Dispatcher {
 				sportResource.createSport(request.getBody());
 				response.setStatus(HttpStatus.CREATED);
 			} catch (InvalidFieldException | ExistingSportException e) {
-				responseError(response, e);
+				this.responseError(response, e);
 			}
 			break;
 		default:
@@ -66,24 +69,17 @@ public class Dispatcher {
 	}
 
 	public void doPut(HttpRequest request, HttpResponse response){
-		switch (request.getPath()) {
 		// PUT /users/{nick}/sport
-		case "users/uno/sport":
-			if ("users".equals(request.paths()[0]) && "sport".equals(request.paths()[2])) {
-				String sportName = request.getBody();
-				try {
-					userResource.updateSportList(request.paths()[1], sportName);
-					response.setStatus(HttpStatus.OK);
-				} catch (InvalidFieldException | ExistingUserException e) {
-					e.printStackTrace();
-				}
-			}else {
-				responseError(response, new InvalidRequestException(request.getPath()));
+		if ("users".equals(request.paths()[0]) && "sport".equals(request.paths()[2])) {
+			String sportName = request.getBody();
+			try {
+				userResource.updateSportList(request.paths()[1], sportName);
+				response.setStatus(HttpStatus.OK);
+			} catch (UserNotFoundException | InvalidFieldException | SportNotFoundException e) {
+				this.responseError(response, e);
 			}
-			break;
-		default:
+		}else {
 			responseError(response, new InvalidRequestException(request.getPath()));
-			break;
 		}
 	}
 

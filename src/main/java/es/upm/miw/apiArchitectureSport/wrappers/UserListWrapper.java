@@ -11,7 +11,7 @@ public class UserListWrapper {
 		userList = new ArrayList<>();
 	}
 
-	public List<UserWrapper> getThemeList() {
+	public List<UserWrapper> getUserList() {
 		return userList;
 	}
 
@@ -24,7 +24,7 @@ public class UserListWrapper {
 	public String toString() {
 		String result = "{\"userList\":[ ";
 		for (UserWrapper userWrapper : userList) {
-			result += userWrapper.toString() + ",";
+			result += userWrapper.toStringOnlyNick() + ",";
 		}
 		return result.substring(0, result.length() - 1) + "]}";
 	}

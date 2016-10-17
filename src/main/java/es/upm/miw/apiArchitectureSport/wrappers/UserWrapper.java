@@ -11,6 +11,9 @@ public class UserWrapper {
 		this.setNick(nick);
 		this.setEmail(email);
 	}
+	public UserWrapper(String nick) {
+		this.setNick(nick);
+	}
 
 	public String getNick() {
 		return nick;
@@ -31,6 +34,11 @@ public class UserWrapper {
 	@Override
 	public String toString() {
 		return "{\"nick\":\"" + nick + "\",\"email\":\"" + email + "\"}";
+	}
+	
+
+	public String toStringOnlyNick() {
+		return "{\"nick\":\"" + nick + "\"}";
 	}
 
 }

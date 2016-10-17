@@ -34,4 +34,13 @@ public class UserController {
 	public void updateUserSportList(String nick, String sportName) {
 		DaoFactory.getFactory().getUserDao().updateUserSportList(nick,sportName);	
 	}
+	
+	public UserListWrapper findUserBySportName(String sportName){
+		List<User> userList = DaoFactory.getFactory().getUserDao().findUserBySportName(sportName);
+		UserListWrapper userListWrapper = new UserListWrapper();
+		for (User user : userList) {
+			userListWrapper.addUserWrapper(new UserWrapper(user.getNick()));
+		}
+		return userListWrapper;
+	}
 }

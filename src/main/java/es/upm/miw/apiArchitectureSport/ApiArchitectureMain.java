@@ -29,8 +29,6 @@ public class ApiArchitectureMain {
 		this.request();
 		request.setBody("dos:dos@gmail.com");
 		this.request();
-		request.setBody("uno:tres@gmail.com");
-		this.request();
 		request.setMethod(HttpMethod.GET);
 		request.setPath("users");
 		request.clearQueryParams();
@@ -46,40 +44,22 @@ public class ApiArchitectureMain {
 		this.request();
 		request.setMethod(HttpMethod.PUT);
 		request.setPath("users/uno/sport");
-		request.clearQueryParams();
 		request.setBody("tenis");
 		this.request();
-		/*request.setPath("votes");
-		request.setBody("1:4");
+		request.setPath("users/uno/sport");
+		request.setBody("noDeporte");
 		this.request();
-		request.setBody("1:5");
+		request.setPath("users/dos/sport");
+		request.setBody("tenis");
 		this.request();
-		request.setBody("2:5");
-		this.request();
-		request.setBody("2:6");
+		request.setPath("users/dos/sport");
+		request.setBody("ajedrez");
 		this.request();
 		request.setMethod(HttpMethod.GET);
-		request.setPath("votes");
 		request.clearQueryParams();
 		request.setBody("");
+		request.setPath("users/search?sport=tenis");
 		this.request();
-		request.setPath("themes");
-		this.request();
-		request.setPath("themes/1/overage");
-		this.request();
-		request.setPath("themes/2/overage");
-		this.request();
-		//Exceptions
-		request.setPath("noValid");
-		this.request();
-		request.setPath("themes/x/overage");
-		this.request();
-		request.setPath("themes/99/overage");
-		this.request();
-		request.setMethod(HttpMethod.POST);
-		request.setPath("votes");
-		request.setBody("99:4");
-		this.request();*/
 	}
 
 	public void httpMethod() {

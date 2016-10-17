@@ -6,6 +6,8 @@ import es.upm.miw.apiArchitectureSport.controllers.UserController;
 import es.upm.miw.apiArchitectureSport.wrappers.UserListWrapper;
 import es.upm.miw.apiArchitectureSport.exceptions.ExistingUserException;
 import es.upm.miw.apiArchitectureSport.exceptions.InvalidFieldException;
+import es.upm.miw.apiArchitectureSport.exceptions.SportNotFoundException;
+import es.upm.miw.apiArchitectureSport.exceptions.UserNotFoundException;
 
 
 public class UserResource {
@@ -34,15 +36,24 @@ public class UserResource {
 	}
 
 	//PUT **/users/{nick}/sport
-	public void updateSportList(String nick, String sportName) throws InvalidFieldException, ExistingUserException {
+	public void updateSportList(String nick, String sportName) throws InvalidFieldException, UserNotFoundException, SportNotFoundException {
 		this.validateField(nick);
 		this.validateField(sportName);
-		if(new UserController().checkIfExistsUserNick(nick)==true && new SportController().checkIfExistsSport(sportName)==false){
-			new UserController().updateUserSportList(nick, sportName);
+		if(new UserController().checkIfExistsUserNick(nick)==true){
+			if(new SportController().checkIfExistsSport(sportName)==true){
+				new UserController().updateUserSportList(nick, sportName);
+			}else{
+				throw new SportNotFoundException ("" + sportName);
+			}
 		}
 		else{
-			throw new ExistingUserException ("" + nick);
+			throw new UserNotFoundException ("" + nick);
 		}
+	}
+	
+	// GET **/users/search?sport=*
+	public UserListWrapper findUserBySportName(String sportName){
+		return new UserController().findUserBySportName(sportName);
 	}
 
 }

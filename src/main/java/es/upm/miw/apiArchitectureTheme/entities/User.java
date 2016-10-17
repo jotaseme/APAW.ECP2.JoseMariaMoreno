@@ -40,5 +40,8 @@ public class User {
 	public void updateUserSportList(String sportName) {
 		sportList.add(sportName);		
 	}
-
+	
+	public ArrayList<String> getUserSportList(){
+		return this.sportList;
+	}
 }
