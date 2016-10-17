@@ -22,30 +22,16 @@ public class UserController {
 	public void createUser(String nick, String email) {
 		DaoFactory.getFactory().getUserDao().create(new User(nick, email));
 	}
-
-	/*public OverageWrapper themeOverage(int themeId) {
-		if (DaoFactory.getFactory().getUserDao().read(themeId) == null) {
-			return null;
-		}
-		List<Integer> voteValues = DaoFactory.getFactory().getVoteDao().findValueByThemeId(themeId);
-		double total = 0;
-		for (Integer value : voteValues) {
-			total += value;
-		}
-		return new OverageWrapper(total / voteValues.size());
-	}*/
 	
 	public boolean checkIfExistsUserNick(String nick){
 		if (DaoFactory.getFactory().getUserDao().read(nick) == null) {
             return false;
         }else{
             return true;
-        }
-		
+        }	
 	}
 
 	public void updateUserSportList(String nick, String sportName) {
 		DaoFactory.getFactory().getUserDao().updateUserSportList(nick,sportName);	
 	}
-
 }

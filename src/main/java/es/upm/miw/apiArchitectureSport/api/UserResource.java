@@ -1,5 +1,6 @@
 package es.upm.miw.apiArchitectureSport.api;
 
+import es.upm.miw.apiArchitectureSport.controllers.SportController;
 import es.upm.miw.apiArchitectureSport.controllers.UserController;
 
 import es.upm.miw.apiArchitectureSport.wrappers.UserListWrapper;
@@ -33,20 +34,15 @@ public class UserResource {
 	}
 
 	//PUT **/users/{nick}/sport
-	public String updateSportList(String nick, String sportName) {
-
-		new UserController().updateUserSportList(nick,sportName);
-		return null;
-	}
-
-	// GET **themes/{id}/overage
-	/*public OverageWrapper themeOverage(int themeId) throws NotFoundThemeIdException {
-		OverageWrapper overageWrapper = new UserController().themeOverage(themeId);
-		if (overageWrapper == null) {
-			throw new NotFoundThemeIdException("" + themeId);
-		} else {
-			return overageWrapper;
+	public void updateSportList(String nick, String sportName) throws InvalidFieldException, ExistingUserException {
+		this.validateField(nick);
+		this.validateField(sportName);
+		if(new UserController().checkIfExistsUserNick(nick)==true && new SportController().checkIfExistsSport(sportName)==false){
+			new UserController().updateUserSportList(nick, sportName);
 		}
-	}*/
+		else{
+			throw new ExistingUserException ("" + nick);
+		}
+	}
 
 }

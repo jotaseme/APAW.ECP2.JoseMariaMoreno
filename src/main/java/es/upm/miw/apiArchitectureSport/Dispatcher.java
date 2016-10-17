@@ -65,18 +65,19 @@ public class Dispatcher {
 		}
 	}
 
-	public void doPut(HttpRequest request, HttpResponse response) {
+	public void doPut(HttpRequest request, HttpResponse response){
 		switch (request.getPath()) {
 		// PUT /users/{nick}/sport
 		case "users/uno/sport":
 			if ("users".equals(request.paths()[0]) && "sport".equals(request.paths()[2])) {
 				String sportName = request.getBody();
-				response.setBody(userResource.updateSportList(request.paths()[1], sportName));
-				response.setStatus(HttpStatus.CREATED);
-				
-				
+				try {
+					userResource.updateSportList(request.paths()[1], sportName);
+					response.setStatus(HttpStatus.OK);
+				} catch (InvalidFieldException | ExistingUserException e) {
+					e.printStackTrace();
+				}
 			}else {
-				System.out.println("AQUI");
 				responseError(response, new InvalidRequestException(request.getPath()));
 			}
 			break;
