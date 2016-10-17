@@ -24,6 +24,14 @@ public class UserListWrapper {
 	public String toString() {
 		String result = "{\"userList\":[ ";
 		for (UserWrapper userWrapper : userList) {
+			result += userWrapper.toString() + ",";
+		}
+		return result.substring(0, result.length() - 1) + "]}";
+	}
+	
+	public String toStringOnlyNick() {
+		String result = "{\"userList\":[ ";
+		for (UserWrapper userWrapper : userList) {
 			result += userWrapper.toStringOnlyNick() + ",";
 		}
 		return result.substring(0, result.length() - 1) + "]}";

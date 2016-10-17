@@ -30,7 +30,7 @@ public class Dispatcher {
 		} else if ("users".equals(request.paths()[0]) && "search?sport=".equals(request.paths()[1].substring(0, request.paths()[1].indexOf("=")+1))) {
 			String sportName = request.paths()[1].substring(request.paths()[1].indexOf("=")+1,request.paths()[1].length());	
 			try {
-				response.setBody(userResource.findUserBySportName(sportName).toString());
+				response.setBody(userResource.findUserBySportName(sportName).toStringOnlyNick());
 			} catch (Exception e) {
 				responseError(response, e);
 			}
