@@ -2,12 +2,12 @@ package es.upm.miw.apiArchitectureSport.api;
 
 import es.upm.miw.apiArchitectureSport.controllers.SportController;
 import es.upm.miw.apiArchitectureSport.exceptions.ExistingSportException;
-import es.upm.miw.apiArchitectureSport.exceptions.InvalidSportNameFieldException;
+import es.upm.miw.apiArchitectureSport.exceptions.InvalidFieldException;
 
 public class SportResource {
 
 	// POST **/sports   body="name"
-	public void createSport(String name) throws InvalidSportNameFieldException, ExistingSportException{
+	public void createSport(String name) throws InvalidFieldException, ExistingSportException{
 		this.validateField(name);
 		
 		if(new SportController().checkIfExistsSport(name)==false){
@@ -18,9 +18,9 @@ public class SportResource {
 		
 	}
 	
-	private void validateField(String field) throws InvalidSportNameFieldException {
+	private void validateField(String field) throws InvalidFieldException {
 		if (field == null || field.isEmpty()) {
-			throw new InvalidSportNameFieldException(field);
+			throw new InvalidFieldException(field);
 		}
 	}
 

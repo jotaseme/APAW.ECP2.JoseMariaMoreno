@@ -4,7 +4,7 @@ import es.upm.miw.apiArchitectureSport.controllers.UserController;
 
 import es.upm.miw.apiArchitectureSport.wrappers.UserListWrapper;
 import es.upm.miw.apiArchitectureSport.exceptions.ExistingUserException;
-import es.upm.miw.apiArchitectureSport.exceptions.InvalidNickFieldException;
+import es.upm.miw.apiArchitectureSport.exceptions.InvalidFieldException;
 
 
 public class UserResource {
@@ -15,7 +15,7 @@ public class UserResource {
 	}
 
 	// POST **/users   body="nick:email""
-	public void createUser(String nick, String email) throws InvalidNickFieldException,ExistingUserException {
+	public void createUser(String nick, String email) throws InvalidFieldException,ExistingUserException {
 		this.validateField(nick);
 		this.validateField(email);
 		if(new UserController().checkIfExistsUserNick(nick)==false){
@@ -26,9 +26,9 @@ public class UserResource {
 		
 	}
 
-	private void validateField(String field) throws InvalidNickFieldException {
+	private void validateField(String field) throws InvalidFieldException {
 		if (field == null || field.isEmpty()) {
-			throw new InvalidNickFieldException(field);
+			throw new InvalidFieldException(field);
 		}
 	}
 

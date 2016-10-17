@@ -5,8 +5,7 @@ import es.upm.miw.apiArchitectureSport.api.SportResource;
 import es.upm.miw.apiArchitectureSport.exceptions.ExistingSportException;
 import es.upm.miw.apiArchitectureSport.exceptions.ExistingUserException;
 import es.upm.miw.apiArchitectureSport.exceptions.InvalidRequestException;
-import es.upm.miw.apiArchitectureSport.exceptions.InvalidSportNameFieldException;
-import es.upm.miw.apiArchitectureSport.exceptions.InvalidNickFieldException;
+import es.upm.miw.apiArchitectureSport.exceptions.InvalidFieldException;
 import es.upm.miw.web.http.HttpRequest;
 import es.upm.miw.web.http.HttpResponse;
 import es.upm.miw.web.http.HttpStatus;
@@ -47,7 +46,7 @@ public class Dispatcher {
 			try {
 				userResource.createUser(nick, email);
 				response.setStatus(HttpStatus.CREATED);
-			} catch (ExistingUserException | InvalidNickFieldException e) {
+			} catch (ExistingUserException | InvalidFieldException e) {
 				this.responseError(response, e);
 			}	
 			break;
@@ -56,7 +55,7 @@ public class Dispatcher {
 			try {
 				sportResource.createSport(request.getBody());
 				response.setStatus(HttpStatus.CREATED);
-			} catch (InvalidSportNameFieldException | ExistingSportException e) {
+			} catch (InvalidFieldException | ExistingSportException e) {
 				responseError(response, e);
 			}
 			break;
